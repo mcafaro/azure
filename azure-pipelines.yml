@@ -10,5 +10,5 @@ pool:
   vmImage: windows-latest
 
 steps:
-  - echo $env:AGENT_TOOLSDIRECTORY
+  - pwsh: echo $env:AGENT_TOOLSDIRECTORY
   - pwsh: Get-PSDrive -PSProvider FileSystem
