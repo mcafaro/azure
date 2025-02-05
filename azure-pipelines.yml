@@ -10,4 +10,4 @@ pool:
   vmImage: windows-latest
 
 steps:
-- script: Get-PSDrive -PSProvider FileSystem
+- pwsh: Get-PSDrive -PSProvider FileSystem
