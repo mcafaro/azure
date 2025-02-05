@@ -10,6 +10,5 @@ pool:
   vmImage: windows-latest
 
 steps:
-  - pwsh: Get-PSDrive -PSProvider FileSystem
-  - task: InstallMATLAB@1
+  - echo $env:AGENT_TOOLSDIRECTORY
   - pwsh: Get-PSDrive -PSProvider FileSystem
