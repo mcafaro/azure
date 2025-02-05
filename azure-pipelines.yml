@@ -11,19 +11,6 @@ pool:
 
 steps:
   - pwsh: |
-      # Retrieve the directory path from the environment variable
-      $originalPath = $env:AGENT_TOOLSDIRECTORY
-      
-      # Replace C:\ with D:\
-      $newPath = $originalPath -replace '^C:\\', 'D:\'
-      
-      # Create the directory if it doesn't exist
-      if (-Not (Test-Path -Path $newPath)) {
-          New-Item -Path $newPath -ItemType Directory | Out-Null
-      }
-      
-      # Set the directory to read-only
-      $directoryInfo = Get-Item -Path $newPath
-      $directoryInfo.Attributes = $directoryInfo.Attributes -bor [System.IO.FileAttributes]::ReadOnly
-      
-      Write-Host "Directory created and set to read-only: $newPath"
+      $newPath = ($env:AGENT_TOOLSDIRECTORY -replace '^C:\\', 'D:\')
+      mkdir -Force $newPath
+      (Get-Item $newPath).Attributes += 'ReadOnly'
