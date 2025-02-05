@@ -11,6 +11,9 @@ pool:
 
 steps:
   - pwsh: |
-      $newPath = ($env:AGENT_TOOLSDIRECTORY -replace '^C:\\', 'D:\')
+      $newPath = $env:AGENT_TOOLSDIRECTORY -replace '^C:\\', 'D:\'
       mkdir -Force $newPath
       (Get-Item $newPath).Attributes += 'ReadOnly'
+  - pwsh: Get-PSDrive -PSProvider FileSystem
+  - task: InstallMATLAB@1
+  - pwsh: Get-PSDrive -PSProvider FileSystem
